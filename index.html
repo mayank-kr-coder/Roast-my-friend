@@ -53,11 +53,12 @@
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     .feature{border:1px solid var(--line);background:#171717;border-radius:17px;padding:18px}
     .feature .emoji{font-size:1.7rem}.feature h3{margin:10px 0 6px;font-size:1rem}.feature p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.5}
-    .challenge{border:1px dashed #5b3828;background:#1d1511;border-radius:18px;padding:22px;text-align:center;margin-top:25px}
+    .battle-panel{max-width:680px;margin:28px auto 0;background:linear-gradient(160deg,#201915,#151515);border:1px solid #543222;border-radius:24px;padding:clamp(18px,4vw,28px)}
+    .battle-panel h2{text-align:center;margin:0 0 8px;font-size:clamp(1.6rem,5vw,2.25rem);letter-spacing:-.04em}.battle-lead{text-align:center;color:var(--muted);line-height:1.5;margin:0 0 22px}.battle-result{display:none;margin-top:18px}.battle-result.show{display:block}.battle-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.battle-card{background:#111;border:1px solid #343434;border-radius:16px;padding:17px;min-width:0}.battle-card.winner{border-color:var(--orange);box-shadow:0 0 0 1px #ff6b2c33}.battle-card h3{margin:0 0 10px;overflow-wrap:anywhere}.battle-card p{line-height:1.45;margin:0;color:#dedede}.winner-tag{display:inline-block;background:var(--orange);color:#160d08;font-size:.72rem;font-weight:950;padding:5px 8px;border-radius:999px;margin-bottom:10px}.battle-verdict{text-align:center;font-weight:900;font-size:1.1rem;margin:16px 0 0;color:#ffb08c}.challenge{border:1px dashed #5b3828;background:#1d1511;border-radius:18px;padding:22px;text-align:center;margin-top:25px}
     .challenge strong{color:#ff986e}
     footer{border-top:1px solid var(--line);margin-top:55px;padding:22px 0 30px;color:#858585;font-size:.8rem;text-align:center}
     .disclaimer{font-size:.75rem;color:#8d8d8d;line-height:1.5;margin-top:14px;text-align:center}
-    @media(max-width:600px){header{padding:17px 0}.tag{font-size:.68rem}main{padding-top:28px}.fields{grid-template-columns:1fr;gap:0}.grid{grid-template-columns:1fr}.feature{display:flex;gap:13px;align-items:flex-start}.feature .emoji{font-size:1.5rem}.feature h3{margin-top:0}.actions{grid-template-columns:1fr 1fr}.actions .action:last-child{grid-column:1/-1}.roast-card{min-height:260px}.wrap{width:min(100% - 24px,1000px)}}
+    @media(max-width:600px){.battle-grid{grid-template-columns:1fr}header{padding:17px 0}.tag{font-size:.68rem}main{padding-top:28px}.fields{grid-template-columns:1fr;gap:0}.grid{grid-template-columns:1fr}.feature{display:flex;gap:13px;align-items:flex-start}.feature .emoji{font-size:1.5rem}.feature h3{margin-top:0}.actions{grid-template-columns:1fr 1fr}.actions .action:last-child{grid-column:1/-1}.roast-card{min-height:260px}.wrap{width:min(100% - 24px,1000px)}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
 </head>
@@ -118,6 +119,28 @@
           <button class="action" id="copyLinkBtn" type="button">🔗 Copy website link</button>
         </div>
         <div class="toast" id="toast" role="status"></div>
+      </section>
+
+      <section class="battle-panel" id="battle">
+        <div class="eyebrow" style="text-align:center">NEW FEATURE • FRIENDSHIP SHOWDOWN</div>
+        <h2>⚔️ Roast Battle Mode</h2>
+        <p class="battle-lead">Do doston ko arena mein lao. Dono ko roast milega aur ek random champion niklega. Winner sirf mazaak mein! 😂</p>
+        <form id="battleForm">
+          <div class="fields">
+            <div class="field"><label for="battleName1">Player 1 👑</label><input id="battleName1" maxlength="24" placeholder="e.g. Rahul" required autocomplete="off"></div>
+            <div class="field"><label for="battleName2">Player 2 💀</label><input id="battleName2" maxlength="24" placeholder="e.g. Aman" required autocomplete="off"></div>
+          </div>
+          <button class="primary" type="submit">⚔️ START ROAST BATTLE</button>
+        </form>
+        <div class="battle-result" id="battleResult" aria-live="polite">
+          <div class="battle-grid">
+            <article class="battle-card" id="battleCard1"><div class="winner-tag" id="battleTag1" hidden>🏆 ROAST CHAMPION</div><h3 id="battleResultName1">Player 1</h3><p id="battleRoast1"></p></article>
+            <article class="battle-card" id="battleCard2"><div class="winner-tag" id="battleTag2" hidden>🏆 ROAST CHAMPION</div><h3 id="battleResultName2">Player 2</h3><p id="battleRoast2"></p></article>
+          </div>
+          <p class="battle-verdict" id="battleVerdict"></p>
+          <div class="actions"><button class="action whatsapp" id="battleWhatsApp" type="button">🟢 Share battle</button><button class="action" id="battleAgain" type="button">🔁 Rematch</button><button class="action" id="battleCopy" type="button">📋 Copy result</button></div>
+          <div class="toast" id="battleToast" role="status"></div>
+        </div>
       </section>
 
       <section class="section">
@@ -183,6 +206,96 @@
       "{name} ka brain never sleeps, bas galat topic pe overtime karta hai. 🤯"
     ]
   };
+    roasts['college'].push(
+      '{name}, tera assignment deadline se milna bhi situationship jaisa hai. 📚',
+      '{name} notes maangne mein topper, padhne mein guest appearance. 🤝',
+      '{name} ka attendance portal bhi bolta hai: who are you? 👀',
+      '{name} exam se pehle pen khareed ke khud ko prepared samajhta hai. ✍️',
+      '{name} group project mein naam deta hai, contribution mystery rakhta hai. 🕵️',
+      '{name} library jaata hai bas AC aur aesthetic ke liye. ❄️',
+      '{name} ka CGPA suspense thriller hai. 🎬',
+      '{name} lecture mein itna silent hai ki attendance bhi doubt karti hai. 🤫',
+      '{name} ke practicals mein confidence hota hai, practical knowledge nahi. 🔬',
+      '{name} timetable banata hai jaise life control mein ho. 🗓️',
+      '{name} viva mein answer se pehle smile deta hai. 😅',
+      '{name} ka study plan: chai, reels, repeat. ☕',
+      '{name} campus ka legend hai—mostly apni stories mein. 🏆'
+    );
+    roasts['single'].push(
+      '{name} ka crush online aaye toh heartbeat bhi notification bhejti hai. 📲',
+      '{name} ka love language: seen at 2:03 AM. 💀',
+      '{name} date pe jaane se pehle imaginary date ka review likh leta hai. 📝',
+      '{name} ke romantic plans mein third wheel bhi unavailable hai. 🛞',
+      '{name} ki flirting dekh ke autocorrect bhi resign kar de. 😭',
+      '{name} ka Valentine plan: food delivery aur self-respect. 🍕',
+      '{name} crush ko story reply karta hai, phir 3 din analysis. 🧠',
+      '{name} ka heart available hai, bas network coverage weak hai. 📶',
+      '{name} ka dating profile dekh ke algorithm bhi confused hai. 🤖',
+      '{name} ke DMs mein dust collect ho rahi hai. 🧹',
+      '{name} love guru advice deta hai, khud tutorial mode mein hai. 🎓',
+      '{name} ka soulmate shayad spam folder mein chala gaya. 📩',
+      '{name} relationship goals save karta hai, relationship nahi. 🔖'
+    );
+    roasts['lazy'].push(
+      '{name} ka favourite exercise snooze button press karna hai. ⏰',
+      '{name} itna chill hai ki ice cube usse motivation leta hai. 🧊',
+      '{name} ka to-do list sirf list banne tak productive hai. 📋',
+      '{name} walk pe jaata hai toh destination fridge hota hai. 🧃',
+      '{name} ka hustle culture: remote ko reach karna. 📺',
+      '{name} kal se pakka karega—calendar ne complaint file kar di. 🗓️',
+      '{name} ke sapne 4K hain, effort airplane mode pe. ✈️',
+      '{name} ka warm-up: bed se uthke wapas bed. 🛏️',
+      '{name} deadline ko dekh ke bhi bolta hai, chill bro. 😎',
+      '{name} itna slow hai ki loading screen usse race mein hara de. 🐢',
+      '{name} ki energy saving mode permanent hai. 🔋',
+      '{name} ka workout routine: gym shoes ko dekhna. 👟',
+      '{name} ka alarm clock ab sirf decoration hai. ⏰'
+    );
+    roasts['attitude'].push(
+      '{name} ki entry VIP, exit bina notice ke. 🎟️',
+      '{name} ka swag premium hai, common sense trial version. 💸',
+      '{name} mirror selfie mein khud ko hi fan club samajhta hai. 🤳',
+      '{name} ka attitude runway model, walk local bus wali. 🚌',
+      '{name} cool banne chala tha, weather normal nikla. 🌤️',
+      '{name} ke standards sky high, replies basement mein. 🏢',
+      '{name} apni hi hype ka PR manager hai. 📣',
+      '{name} ka aura strong hai, arguments weak. 🫠',
+      '{name} sunglasses raat mein bhi pehenta hai—future bright jo hai. 🕶️',
+      '{name} ka bio motivational, routine fictional. 📖',
+      '{name} khud ko limited edition samajhta hai, return policy bhi nahi. 🏷️',
+      '{name} ki personality trailer mein achhi thi. 🎞️',
+      '{name} ka confidence borrowed hai, return date pending. 🤝'
+    );
+    roasts['food'].push(
+      '{name} ka cheat meal itna frequent hai ki normal meal jealous hai. 🍟',
+      '{name} restaurant mein menu nahi, photos scroll karta hai. 📸',
+      '{name} ke liye five-star review ka matlab five plates. ⭐',
+      '{name} ka budget tight ho sakta hai, food cravings nahi. 💳',
+      '{name} fridge kholta hai jaise naya episode aayega. 🧊',
+      '{name} ka favourite sport: last bite bachana. 🏅',
+      '{name} food coma ko lifestyle bolta hai. 😴',
+      '{name} ke phone mein food apps ka attendance full hai. 📱',
+      '{name} salad order karta hai sirf photo ke liye. 🥗',
+      '{name} ka mood weather se nahi, menu se change hota hai. 🌦️',
+      '{name} buffet mein strategy ke saath enter karta hai. 🧠',
+      '{name} ka food map Google Maps se zyada updated hai. 🗺️',
+      '{name} ka gym bag snacks ke liye emergency kit hai. 🍪'
+    );
+    roasts['overthink'].push(
+      '{name} ek full stop dekh ke friendship ka postmortem kar leta hai. 🫠',
+      '{name} ka brain raat ko meeting rakhta hai bina agenda ke. 🌙',
+      '{name} future ke 12 versions imagine karta hai, ek bhi confirm nahi. 🔮',
+      '{name} reply type karta hai, delete karta hai, phir good night. ⌨️',
+      '{name} ke thoughts ka group chat kabhi mute nahi hota. 🔔',
+      '{name} simple choice ko UPSC optional bana deta hai. 📚',
+      '{name} ek awkward moment ko director cut ke saath yaad karta hai. 🎥',
+      '{name} ka brain background apps band karna bhool gaya. 💻',
+      '{name} plan A se pehle plan Z ka risk assess karta hai. 📊',
+      '{name} message mein emoji na ho toh emergency declare karta hai. 🚨',
+      '{name} ka mind Google search history se bhi zyada deep hai. 🔍',
+      '{name} ek decision ke liye committee meeting bula leta hai. 🪑',
+      '{name} relax karne ka bhi schedule banata hai. 🗓️'
+    );
   const allCategories = Object.keys(roasts);
   let currentRoast = "";
   let currentScore = 0;
@@ -275,6 +388,44 @@
     ctx.fillText(line, x, y);
     return y + lineHeight;
   }
+
+  let battleData = null;
+  function runBattle() {
+    const n1 = $('battleName1').value.trim().replace(/\s+/g, ' ').slice(0,24);
+    const n2 = $('battleName2').value.trim().replace(/\s+/g, ' ').slice(0,24);
+    if (!n1 || !n2) return;
+    if (n1.toLowerCase() === n2.toLowerCase()) { $('battleToast').textContent = 'Dono names alag rakho, warna battle confusing ho jayegi 😂'; return; }
+    const r1 = makeRoast(n1, pick(allCategories));
+    let r2 = makeRoast(n2, pick(allCategories));
+    if (r2 === r1) r2 = makeRoast(n2, pick(allCategories));
+    const winner = Math.random() < 0.5 ? 1 : 2;
+    battleData = {n1,n2,r1,r2,winner};
+    $('battleResultName1').textContent = n1;
+    $('battleResultName2').textContent = n2;
+    $('battleRoast1').textContent = r1;
+    $('battleRoast2').textContent = r2;
+    $('battleCard1').classList.toggle('winner', winner === 1);
+    $('battleCard2').classList.toggle('winner', winner === 2);
+    $('battleTag1').hidden = winner !== 1;
+    $('battleTag2').hidden = winner !== 2;
+    $('battleVerdict').textContent = '🏆 ' + (winner === 1 ? n1 : n2) + ' wins this totally unofficial roast battle! 😂';
+    $('battleResult').classList.add('show');
+    $('battleToast').textContent = '';
+    $('battleResult').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  function battleText() {
+    if (!battleData) return '';
+    const b = battleData;
+    return '⚔️ ROAST BATTLE on RoastMyFriend 😂\n\n' + b.n1 + ': ' + b.r1 + '\n\n' + b.n2 + ': ' + b.r2 + '\n\n🏆 Winner: ' + (b.winner === 1 ? b.n1 : b.n2) + ' (just for fun!)\n\nTry it: ' + window.location.href + '#battle';
+  }
+  $('battleForm').addEventListener('submit', e => { e.preventDefault(); runBattle(); });
+  $('battleAgain').addEventListener('click', runBattle);
+  $('battleWhatsApp').addEventListener('click', () => { if (battleData) window.open('https://wa.me/?text=' + encodeURIComponent(battleText()), '_blank', 'noopener,noreferrer'); });
+  $('battleCopy').addEventListener('click', async () => {
+    if (!battleData) return;
+    try { await navigator.clipboard.writeText(battleText()); $('battleToast').textContent = 'Battle copied! Group chat mein bhejo 🔥'; }
+    catch { $('battleToast').textContent = 'Copy unavailable. Select and copy the battle text.'; }
+  });
   $("year").textContent = new Date().getFullYear();
 })();
 </script>
