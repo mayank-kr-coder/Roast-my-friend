@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="Roast your best friend with hilarious Hinglish memes. Generate a funny roast and share it instantly.">
+  <title>RoastMyFriend 😂 — Dosti Mein Beizzati</title>
+  <style>
+    :root{--bg:#101010;--panel:#191919;--panel2:#222;--text:#f7f7f7;--muted:#a6a6a6;--orange:#ff6b2c;--yellow:#ffd166;--line:#303030}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 50% -20%,#392016 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+    a{color:inherit}
+    .wrap{width:min(100% - 32px,1000px);margin:auto}
+    header{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+    .brand{font-weight:950;letter-spacing:-1px;font-size:1.2rem}.brand span{color:var(--orange)}
+    .tag{border:1px solid #4a3329;background:#251811;color:#ffb08c;border-radius:999px;padding:7px 11px;font-size:.75rem;font-weight:750}
+    main{padding:38px 0 56px}
+    .hero{text-align:center;max-width:760px;margin:0 auto 28px}
+    .eyebrow{color:var(--orange);font-weight:900;letter-spacing:2px;text-transform:uppercase;font-size:.75rem}
+    h1{font-size:clamp(2.5rem,8vw,5.6rem);line-height:.98;letter-spacing:-.065em;margin:15px 0}
+    h1 em{font-style:normal;color:var(--orange)}
+    .sub{font-size:clamp(1rem,2.8vw,1.15rem);line-height:1.6;color:#bcbcbc;max-width:590px;margin:0 auto}
+    .panel{background:linear-gradient(160deg,#202020,#151515);border:1px solid var(--line);border-radius:24px;padding:clamp(18px,4vw,30px);max-width:680px;margin:30px auto 0;box-shadow:0 24px 80px #0007}
+    label{display:block;font-size:.85rem;font-weight:800;margin-bottom:9px}
+    input,select{width:100%;background:#101010;border:1px solid #3a3a3a;color:white;border-radius:13px;padding:15px 14px;font:inherit;outline:none}
+    input:focus,select:focus{border-color:var(--orange);box-shadow:0 0 0 3px #ff6b2c20}
+    .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .field{margin-bottom:16px}
+    .primary{width:100%;border:0;border-radius:14px;padding:16px;background:var(--orange);color:#160d08;font-size:1.05rem;font-weight:950;cursor:pointer;transition:transform .15s,filter .15s}
+    .primary:hover{filter:brightness(1.08);transform:translateY(-1px)}button:focus-visible{outline:3px solid white;outline-offset:3px}
+    .hint{text-align:center;color:#898989;font-size:.78rem;margin:12px 0 0}
+    .result{display:none;max-width:680px;margin:20px auto 0;animation:pop .3s ease}
+    .result.show{display:block}
+    @keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .roast-card{position:relative;overflow:hidden;border-radius:22px;padding:26px;background:linear-gradient(135deg,#ff6b2c,#ff9d45);color:#1b100b;min-height:245px;display:flex;flex-direction:column;justify-content:space-between}
+    .roast-card:after{content:"😂";position:absolute;font-size:9rem;right:-15px;bottom:-35px;opacity:.14;transform:rotate(-15deg)}
+    .card-top,.card-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .mini-brand{font-weight:1000;font-size:.8rem;letter-spacing:-.3px}
+    .score{font-size:.75rem;font-weight:900;background:#1b100b;color:#fff;padding:8px 10px;border-radius:999px}
+    .roast-name{font-size:clamp(1.6rem,5vw,2.5rem);font-weight:1000;letter-spacing:-.05em;margin:24px 0 9px;overflow-wrap:anywhere}
+    .roast-text{position:relative;z-index:1;font-size:clamp(1.15rem,3.5vw,1.65rem);font-weight:850;line-height:1.28;max-width:540px;margin:0 0 28px}
+    .card-bottom{font-size:.72rem;font-weight:850;opacity:.8}
+    .actions{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+    .action{border:1px solid #393939;background:#202020;color:white;border-radius:12px;padding:12px 8px;font:inherit;font-size:.84rem;font-weight:850;cursor:pointer}
+    .action:hover{background:#2d2d2d}
+    .action.whatsapp{background:#1b5e3b;border-color:#1b5e3b}
+    .toast{min-height:20px;text-align:center;color:#ffd166;font-size:.82rem;margin-top:9px}
+    .section{padding:52px 0 10px}
+    .section h2{text-align:center;font-size:clamp(1.7rem,5vw,2.5rem);letter-spacing:-.04em;margin:0 0 10px}
+    .section p.lead{text-align:center;color:var(--muted);margin:0 auto 22px;max-width:550px;line-height:1.6}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .feature{border:1px solid var(--line);background:#171717;border-radius:17px;padding:18px}
+    .feature .emoji{font-size:1.7rem}.feature h3{margin:10px 0 6px;font-size:1rem}.feature p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.5}
+    .challenge{border:1px dashed #5b3828;background:#1d1511;border-radius:18px;padding:22px;text-align:center;margin-top:25px}
+    .challenge strong{color:#ff986e}
+    footer{border-top:1px solid var(--line);margin-top:55px;padding:22px 0 30px;color:#858585;font-size:.8rem;text-align:center}
+    .disclaimer{font-size:.75rem;color:#8d8d8d;line-height:1.5;margin-top:14px;text-align:center}
+    @media(max-width:600px){header{padding:17px 0}.tag{font-size:.68rem}main{padding-top:28px}.fields{grid-template-columns:1fr;gap:0}.grid{grid-template-columns:1fr}.feature{display:flex;gap:13px;align-items:flex-start}.feature .emoji{font-size:1.5rem}.feature h3{margin-top:0}.actions{grid-template-columns:1fr 1fr}.actions .action:last-child{grid-column:1/-1}.roast-card{min-height:260px}.wrap{width:min(100% - 24px,1000px)}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Roast<span>MyFriend</span> 😂</div>
+      <div class="tag">100% DOSTI KI BEIZZATI</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Warning: Dosti at risk ⚠️</div>
+        <h1>Roast your dost.<br><em>Save the friendship.</em></h1>
+        <p class="sub">Naam daal. Roast nikaal. Group mein aag laga. The internet's unofficial department of friendly beizzati. 💀</p>
+      </section>
+
+      <section class="panel" aria-label="Roast generator">
+        <form id="roastForm">
+          <div class="fields">
+            <div class="field">
+              <label for="friendName">Dost ka naam 👀</label>
+              <input id="friendName" name="friendName" maxlength="24" placeholder="e.g. Rahul, Prasanta..." autocomplete="off" required>
+            </div>
+            <div class="field">
+              <label for="category">Beizzati category 🎯</label>
+              <select id="category" name="category">
+                <option value="random">Surprise me 🤡</option>
+                <option value="college">College ka legend 🎓</option>
+                <option value="single">Single pro max 💔</option>
+                <option value="lazy">Aalsi department 🛌</option>
+                <option value="attitude">Attitude 5G 😎</option>
+                <option value="food">Foodie dost 🍕</option>
+                <option value="overthink">Overthinking CEO 🧠</option>
+              </select>
+            </div>
+          </div>
+          <button class="primary" type="submit">🔥 ROAST KARO!</button>
+          <p class="hint">No login. No payment. Bas thodi si beizzati.</p>
+        </form>
+      </section>
+
+      <section class="result" id="result" aria-live="polite">
+        <div class="roast-card" id="roastCard">
+          <div class="card-top"><div class="mini-brand">ROASTMYFRIEND 😂</div><div class="score" id="score">ROAST LEVEL: 87/100</div></div>
+          <div>
+            <div class="roast-name" id="resultName">RAHUL</div>
+            <p class="roast-text" id="roastText">Tera confidence dekh ke lagta hai Wi-Fi full hai, par internet nahi chal raha. 💀</p>
+          </div>
+          <div class="card-bottom"><span>FRIENDSHIP TEST: PASSED? 🤨</span><span>#DostiKiBeizzati</span></div>
+        </div>
+        <div class="actions">
+          <button class="action whatsapp" id="whatsappBtn" type="button">🟢 WhatsApp</button>
+          <button class="action" id="copyBtn" type="button">📋 Copy roast</button>
+          <button class="action" id="downloadBtn" type="button">⬇️ Save card</button>
+          <button class="action" id="againBtn" type="button">🔁 Roast again</button>
+          <button class="action" id="nativeShareBtn" type="button">📲 Share</button>
+          <button class="action" id="copyLinkBtn" type="button">🔗 Copy website link</button>
+        </div>
+        <div class="toast" id="toast" role="status"></div>
+      </section>
+
+      <section class="section">
+        <h2>Why your group chat needs this 💀</h2>
+        <p class="lead">Made for harmless jokes, college groups, and that one friend who can take a joke. Tag the dost. Accept the consequences.</p>
+        <div class="grid">
+          <article class="feature"><div class="emoji">🎓</div><div><h3>College wali beizzati</h3><p>Attendance low, confidence high. Every college has that one character.</p></div></article>
+          <article class="feature"><div class="emoji">💔</div><div><h3>Single dost special</h3><p>Relationship status: buffering since birth. Just jokes, yaar.</p></div></article>
+          <article class="feature"><div class="emoji">📲</div><div><h3>Share & tag</h3><p>Save the roast card and send it to your group chat in seconds.</p></div></article>
+        </div>
+        <div class="challenge"><strong>🔥 CHALLENGE:</strong> Roast your friend, then let them roast you back. Fair game only!</div>
+        <p class="disclaimer">Roasts are randomly selected jokes generated in your browser. Keep it friendly: no hate, threats, private information, or jokes about sensitive personal traits.</p>
+      </section>
+    </main>
+
+    <footer>Made with 😂 and zero respect for your group chat's peace. <br>Roast responsibly. Friendship first. © <span id="year"></span> RoastMyFriend</footer>
+  </div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const roasts = {
+    college: [
+      "{name}, teri attendance se zyada toh mere phone ki battery stable hai. 🔋",
+      "{name} ka syllabus se rishta long-distance relationship jaisa hai. 📚",
+      "{name}, exam ke time tera confidence dekh ke lagta hai paper tune hi set kiya hai. 💀",
+      "{name} class mein present hai, par dimaag ne WFH le rakha hai. 🧠",
+      "{name} ka career plan itna secret hai ki khud ko bhi nahi pata. 🤡"
+    ],
+    single: [
+      "{name} ka relationship status itna single hai, OTP bhi khud hi aata hai. 💔",
+      "{name} ko crush ne friendzone nahi kiya, seedha archive kar diya. 📦",
+      "{name} ka love life: terms and conditions apply, but nobody clicked agree. 😭",
+      "{name} ke DMs mein itni shanti hai ki meditation app jealous ho jaaye. 🧘",
+      "{name} ka soulmate shayad abhi software update kar raha hai. 🔄"
+    ],
+    lazy: [
+      "{name} itna aalsi hai ki alarm bhi bolta hai: rehne de bhai. 🛌",
+      "{name} ke goals bahut high hain, bas uthne ka time nahi milta. 😴",
+      "{name} ka cardio: phone 2% pe ho toh charger tak jaana. 🏃",
+      "{name} kal se start karega. Bas woh kal abhi tak launch nahi hua. 🚀",
+      "{name} ki productivity dekh ke loading icon bhi fast lagta hai. ⏳"
+    ],
+    attitude: [
+      "{name} ka attitude iPhone Pro Max, budget pocket-money wala. 😎",
+      "{name} entry aise leta hai jaise background music ka bill khud bharta ho. 🎬",
+      "{name} ke nakhre celebrity wale, fame colony ke WhatsApp group jitni. 📱",
+      "{name} ka confidence 5G hai, logic abhi 2G pe hai. 📶",
+      "{name} khud ko main character samajhta hai, par script mein cameo hai. 🍿"
+    ],
+    food: [
+      "{name} ka food review: plate khaali, review five stars. 🍕",
+      "{name} diet Monday se start karta hai. Kaunsa Monday? Mystery. 🥲",
+      "{name} ko menu yaad nahi, bas delivery ka ETA yaad hai. 🛵",
+      "{name} ka true love: 'Your order is arriving'. ❤️",
+      "{name} gym membership se zyada food apps open karta hai. 🍔"
+    ],
+    overthink: [
+      "{name} 'Hi' ka reply dene se pehle 4 seasons ki theory bana leta hai. 🧠",
+      "{name} ka dimaag 47 tabs khol ke baitha hai, sab mein music chal raha hai. 💻",
+      "{name} future itna sochta hai ki present ne block kar diya. ⏳",
+      "{name} 'okay' message ka meaning decode karne ke liye NASA bulata hai. 🛰️",
+      "{name} ka brain never sleeps, bas galat topic pe overtime karta hai. 🤯"
+    ]
+  };
+  const allCategories = Object.keys(roasts);
+  let currentRoast = "";
+  let currentScore = 0;
+  let currentName = "";
+
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function makeRoast(name, category) {
+    const chosen = category === "random" ? pick(allCategories) : category;
+    let options = roasts[chosen];
+    let line = pick(options);
+    if (line === currentRoast && options.length > 1) line = options[(options.indexOf(line) + 1) % options.length];
+    return line.replaceAll("{name}", name);
+  }
+  function notify(message) {
+    $("toast").textContent = message;
+    window.setTimeout(() => { if ($("toast").textContent === message) $("toast").textContent = ""; }, 2800);
+  }
+  function generate() {
+    const cleanName = $("friendName").value.trim().replace(/\s+/g, " ");
+    if (!cleanName) { $("friendName").focus(); return; }
+    currentName = cleanName.slice(0, 24);
+    currentRoast = makeRoast(currentName, $("category").value);
+    currentScore = 65 + Math.floor(Math.random() * 36);
+    $("resultName").textContent = currentName.toUpperCase();
+    $("roastText").textContent = currentRoast;
+    $("score").textContent = "ROAST LEVEL: " + currentScore + "/100";
+    $("result").classList.add("show");
+    $("result").scrollIntoView({behavior: "smooth", block: "center"});
+    $("toast").textContent = "";
+  }
+  function shareText() {
+    return "😂 " + currentName + " got roasted on RoastMyFriend!\n\n" + currentRoast + "\n\nRoast your dost too: " + window.location.href;
+  }
+  $("roastForm").addEventListener("submit", (e) => { e.preventDefault(); generate(); });
+  $("againBtn").addEventListener("click", generate);
+  $("copyBtn").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(shareText()); notify("Roast copied! Ab group chat mein aag laga 🔥"); }
+    catch { notify("Copy unavailable here — select the roast text and copy it."); }
+  });
+  $("whatsappBtn").addEventListener("click", () => {
+    if (!currentRoast) return;
+    window.open("https://wa.me/?text=" + encodeURIComponent(shareText()), "_blank", "noopener,noreferrer");
+  });
+  $("nativeShareBtn").addEventListener("click", async () => {
+    if (!currentRoast) return;
+    if (navigator.share) {
+      try { await navigator.share({title: "RoastMyFriend 😂", text: shareText(), url: window.location.href}); }
+      catch (e) { if (e.name !== "AbortError") notify("Sharing isn't available right now."); }
+    } else {
+      try { await navigator.clipboard.writeText(shareText()); notify("Share not supported here — roast copied instead!"); }
+      catch { notify("Use WhatsApp or Copy roast to share."); }
+    }
+  });
+  $("copyLinkBtn").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(window.location.href); notify("Website link copied 🔗"); }
+    catch { notify("Copy unavailable. Copy the address from your browser."); }
+  });
+  $("downloadBtn").addEventListener("click", () => {
+    if (!currentRoast) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = 1080; canvas.height = 1080;
+    const ctx = canvas.getContext("2d");
+    const grad = ctx.createLinearGradient(0, 0, 1080, 1080);
+    grad.addColorStop(0, "#ff6b2c"); grad.addColorStop(1, "#ffb14a");
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, 1080, 1080);
+    ctx.fillStyle = "rgba(27,16,11,.10)"; ctx.beginPath(); ctx.arc(1000, 1000, 320, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = "#1b100b"; ctx.font = "bold 36px Arial"; ctx.fillText("ROASTMYFRIEND 😂", 70, 95);
+    ctx.fillStyle = "#1b100b"; ctx.font = "bold 26px Arial"; ctx.textAlign = "right"; ctx.fillText("ROAST LEVEL: " + currentScore + "/100", 1010, 95); ctx.textAlign = "left";
+    ctx.font = "900 76px Arial";
+    const name = currentName.toUpperCase();
+    let y = 330;
+    wrapCanvasText(ctx, name, 70, y, 900, 90);
+    y += 110;
+    ctx.font = "bold 49px Arial";
+    y = wrapCanvasText(ctx, currentRoast, 70, y, 900, 70);
+    ctx.fillStyle = "#1b100b"; ctx.font = "bold 27px Arial"; ctx.fillText("FRIENDSHIP TEST: PASSED? 🤨", 70, 970);
+    ctx.font = "bold 26px Arial"; ctx.textAlign = "right"; ctx.fillText("#DostiKiBeizzati", 1010, 970);
+    const a = document.createElement("a");
+    a.download = "roast-" + currentName.toLowerCase().replace(/[^a-z0-9]+/g, "-") + ".png";
+    a.href = canvas.toDataURL("image/png"); a.click();
+    notify("Roast card saved! Share it with your dost 😈");
+  });
+  function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(" "); let line = "";
+    for (let i = 0; i < words.length; i++) {
+      const test = line + words[i] + " ";
+      if (ctx.measureText(test).width > maxWidth && i > 0) { ctx.fillText(line, x, y); line = words[i] + " "; y += lineHeight; }
+      else line = test;
+    }
+    ctx.fillText(line, x, y);
+    return y + lineHeight;
+  }
+  $("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
