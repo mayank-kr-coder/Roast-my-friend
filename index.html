@@ -5,36 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#101010">
   <meta name="description" content="Roast your best friend with hilarious Hinglish memes. Generate a funny roast and share it instantly.">
+  <meta property="og:title" content="RoastMyFriend 😂 — Dosti Mein Beizzati">
+  <meta property="og:description" content="Naam daal. Roast nikaal. Group mein aag laga. Generate a friendly roast and challenge your dost.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RoastMyFriend 😂">
+  <meta name="twitter:description" content="The internet's unofficial department of friendly beizzati.">
   <title>RoastMyFriend 😂 — Dosti Mein Beizzati</title>
   <style>
-    :root{--bg:#101010;--panel:#191919;--panel2:#222;--text:#f7f7f7;--muted:#a6a6a6;--orange:#ff6b2c;--yellow:#ffd166;--line:#303030}
+    :root{--bg:#0b0b0f;--panel:#15151b;--panel2:#20202a;--text:#fbfbff;--muted:#aaa9b7;--orange:#ff7043;--yellow:#f7ff65;--pink:#ff4fa3;--cyan:#73f5dc;--line:#30303c}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:radial-gradient(ellipse at 50% -20%,#392016 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+    body{margin:0;background:radial-gradient(circle at 8% 0%,#3a1b39 0,transparent 31%),radial-gradient(circle at 92% 17%,#193c3c 0,transparent 24%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
     a{color:inherit}
     .wrap{width:min(100% - 32px,1000px);margin:auto}
-    header{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+    header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;position:relative;z-index:2}
     .brand{font-weight:950;letter-spacing:-1px;font-size:1.2rem}.brand span{color:var(--orange)}
-    .tag{border:1px solid #4a3329;background:#251811;color:#ffb08c;border-radius:999px;padding:7px 11px;font-size:.75rem;font-weight:750}
-    main{padding:38px 0 56px}
-    .hero{text-align:center;max-width:760px;margin:0 auto 28px}
-    .eyebrow{color:var(--orange);font-weight:900;letter-spacing:2px;text-transform:uppercase;font-size:.75rem}
-    h1{font-size:clamp(2.5rem,8vw,5.6rem);line-height:.98;letter-spacing:-.065em;margin:15px 0}
-    h1 em{font-style:normal;color:var(--orange)}
-    .sub{font-size:clamp(1rem,2.8vw,1.15rem);line-height:1.6;color:#bcbcbc;max-width:590px;margin:0 auto}
-    .panel{background:linear-gradient(160deg,#202020,#151515);border:1px solid var(--line);border-radius:24px;padding:clamp(18px,4vw,30px);max-width:680px;margin:30px auto 0;box-shadow:0 24px 80px #0007}
+    .tag{border:1px solid #56612e;background:#20251a;color:var(--yellow);border-radius:999px;padding:7px 11px;font-size:.75rem;font-weight:850}
+    main{padding:42px 0 56px}
+    .hero{text-align:center;max-width:800px;margin:0 auto 28px}
+    .eyebrow{color:var(--cyan);font-weight:950;letter-spacing:2px;text-transform:uppercase;font-size:.75rem}
+    h1{font-size:clamp(2.8rem,9vw,6.5rem);line-height:.91;letter-spacing:-.075em;margin:16px 0}
+    h1 em{font-style:normal;color:var(--orange);text-shadow:4px 4px 0 #7b2b35}
+    .sub{font-size:clamp(1rem,2.8vw,1.15rem);line-height:1.6;color:#c2c1ce;max-width:610px;margin:0 auto}
+    .proof{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:21px 0 0}
+    .proof span{background:#171721;border:1px solid #343443;border-radius:999px;padding:8px 11px;color:#e9e8f2;font-size:.76rem;font-weight:800}
+    .proof b{color:var(--yellow)}
+    .panel{background:linear-gradient(145deg,#242331,#15151b 70%);border:1px solid #424253;border-radius:26px;padding:clamp(18px,4vw,30px);max-width:680px;margin:30px auto 0;box-shadow:0 25px 90px #0009,0 0 0 5px #ffffff03}
+    .panel:before{content:"STEP 1 • NAME THE VICTIM";display:block;color:var(--yellow);font-size:.68rem;font-weight:950;letter-spacing:1.6px;margin-bottom:18px}
     label{display:block;font-size:.85rem;font-weight:800;margin-bottom:9px}
-    input,select{width:100%;background:#101010;border:1px solid #3a3a3a;color:white;border-radius:13px;padding:15px 14px;font:inherit;outline:none}
+    input,select{width:100%;background:#0d0d12;border:1px solid #454553;color:white;border-radius:13px;padding:15px 14px;font:inherit;outline:none}
     input:focus,select:focus{border-color:var(--orange);box-shadow:0 0 0 3px #ff6b2c20}
     .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .field{margin-bottom:16px}
-    .primary{width:100%;border:0;border-radius:14px;padding:16px;background:var(--orange);color:#160d08;font-size:1.05rem;font-weight:950;cursor:pointer;transition:transform .15s,filter .15s}
+    .primary{width:100%;border:0;border-radius:14px;padding:17px;background:linear-gradient(100deg,var(--orange),#ff9a49);color:#190d08;font-size:1.05rem;font-weight:950;cursor:pointer;box-shadow:0 9px 0 #9c3924,0 15px 28px #ff704344;transition:transform .15s,filter .15s}
     .primary:hover{filter:brightness(1.08);transform:translateY(-1px)}button:focus-visible{outline:3px solid white;outline-offset:3px}
     .hint{text-align:center;color:#898989;font-size:.78rem;margin:12px 0 0}
     .result{display:none;max-width:680px;margin:20px auto 0;animation:pop .3s ease}
     .result.show{display:block}
     @keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .roast-card{position:relative;overflow:hidden;border-radius:22px;padding:26px;background:linear-gradient(135deg,#ff6b2c,#ff9d45);color:#1b100b;min-height:245px;display:flex;flex-direction:column;justify-content:space-between}
+    .roast-card{position:relative;overflow:hidden;border-radius:22px;padding:26px;background:linear-gradient(135deg,#ff7043,#ffb84d 58%,#f7ff65);color:#1b100b;min-height:245px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:12px 14px 0 #42222c}
     .roast-card:after{content:"😂";position:absolute;font-size:9rem;right:-15px;bottom:-35px;opacity:.14;transform:rotate(-15deg)}
     .card-top,.card-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px;align-items:center}
     .mini-brand{font-weight:1000;font-size:.8rem;letter-spacing:-.3px}
@@ -43,22 +53,26 @@
     .roast-text{position:relative;z-index:1;font-size:clamp(1.15rem,3.5vw,1.65rem);font-weight:850;line-height:1.28;max-width:540px;margin:0 0 28px}
     .card-bottom{font-size:.72rem;font-weight:850;opacity:.8}
     .actions{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
-    .action{border:1px solid #393939;background:#202020;color:white;border-radius:12px;padding:12px 8px;font:inherit;font-size:.84rem;font-weight:850;cursor:pointer}
+    .action{border:1px solid #454552;background:#22222c;color:white;border-radius:12px;padding:12px 8px;font:inherit;font-size:.84rem;font-weight:850;cursor:pointer;transition:transform .15s,background .15s}
     .action:hover{background:#2d2d2d}
     .action.whatsapp{background:#1b5e3b;border-color:#1b5e3b}
     .toast{min-height:20px;text-align:center;color:#ffd166;font-size:.82rem;margin-top:9px}
-    .section{padding:52px 0 10px}
+    .section{padding:70px 0 10px}
     .section h2{text-align:center;font-size:clamp(1.7rem,5vw,2.5rem);letter-spacing:-.04em;margin:0 0 10px}
     .section p.lead{text-align:center;color:var(--muted);margin:0 auto 22px;max-width:550px;line-height:1.6}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .feature{border:1px solid var(--line);background:#171717;border-radius:17px;padding:18px}
+    .feature{border:1px solid var(--line);background:linear-gradient(145deg,#191923,#121218);border-radius:17px;padding:18px}
     .feature .emoji{font-size:1.7rem}.feature h3{margin:10px 0 6px;font-size:1rem}.feature p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.5}
     .battle-panel{max-width:680px;margin:28px auto 0;background:linear-gradient(160deg,#201915,#151515);border:1px solid #543222;border-radius:24px;padding:clamp(18px,4vw,28px)}
-    .battle-panel h2{text-align:center;margin:0 0 8px;font-size:clamp(1.6rem,5vw,2.25rem);letter-spacing:-.04em}.battle-lead{text-align:center;color:var(--muted);line-height:1.5;margin:0 0 22px}.battle-result{display:none;margin-top:18px}.battle-result.show{display:block}.battle-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.battle-card{background:#111;border:1px solid #343434;border-radius:16px;padding:17px;min-width:0}.battle-card.winner{border-color:var(--orange);box-shadow:0 0 0 1px #ff6b2c33}.battle-card h3{margin:0 0 10px;overflow-wrap:anywhere}.battle-card p{line-height:1.45;margin:0;color:#dedede}.winner-tag{display:inline-block;background:var(--orange);color:#160d08;font-size:.72rem;font-weight:950;padding:5px 8px;border-radius:999px;margin-bottom:10px}.battle-verdict{text-align:center;font-weight:900;font-size:1.1rem;margin:16px 0 0;color:#ffb08c}.challenge{border:1px dashed #5b3828;background:#1d1511;border-radius:18px;padding:22px;text-align:center;margin-top:25px}
+    .battle-panel h2{text-align:center;margin:0 0 8px;font-size:clamp(1.6rem,5vw,2.25rem);letter-spacing:-.04em}.battle-lead{text-align:center;color:var(--muted);line-height:1.5;margin:0 0 22px}.battle-result{display:none;margin-top:18px}.battle-result.show{display:block}.battle-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.battle-card{background:#111;border:1px solid #343434;border-radius:16px;padding:17px;min-width:0}.battle-card.winner{border-color:var(--orange);box-shadow:0 0 0 1px #ff6b2c33}.battle-card h3{margin:0 0 10px;overflow-wrap:anywhere}.battle-card p{line-height:1.45;margin:0;color:#dedede}.winner-tag{display:inline-block;background:var(--orange);color:#160d08;font-size:.72rem;font-weight:950;padding:5px 8px;border-radius:999px;margin-bottom:10px}.battle-verdict{text-align:center;font-weight:900;font-size:1.1rem;margin:16px 0 0;color:#ffb08c}    .challenge{border:1px dashed #756b31;background:linear-gradient(90deg,#211d15,#181518);border-radius:18px;padding:22px;text-align:center;margin-top:25px}
+    .viral-loop{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:680px;margin:35px auto 0}
+    .loop-step{padding:15px 12px;border-radius:15px;background:#171720;border:1px solid #30303c;text-align:center}
+    .loop-step b{display:block;color:var(--yellow);font-size:.72rem;letter-spacing:1px;margin-bottom:6px}
+    .loop-step span{font-size:.83rem;font-weight:850}
     .challenge strong{color:#ff986e}
     footer{border-top:1px solid var(--line);margin-top:55px;padding:22px 0 30px;color:#858585;font-size:.8rem;text-align:center}
     .disclaimer{font-size:.75rem;color:#8d8d8d;line-height:1.5;margin-top:14px;text-align:center}
-    @media(max-width:600px){.battle-grid{grid-template-columns:1fr}header{padding:17px 0}.tag{font-size:.68rem}main{padding-top:28px}.fields{grid-template-columns:1fr;gap:0}.grid{grid-template-columns:1fr}.feature{display:flex;gap:13px;align-items:flex-start}.feature .emoji{font-size:1.5rem}.feature h3{margin-top:0}.actions{grid-template-columns:1fr 1fr}.actions .action:last-child{grid-column:1/-1}.roast-card{min-height:260px}.wrap{width:min(100% - 24px,1000px)}}
+    @media(max-width:600px){.battle-grid{grid-template-columns:1fr}header{padding:17px 0}.tag{font-size:.68rem}main{padding-top:28px}.fields{grid-template-columns:1fr;gap:0}.grid{grid-template-columns:1fr}.feature{display:flex;gap:13px;align-items:flex-start}.feature .emoji{font-size:1.5rem}.feature h3{margin-top:0}.actions{grid-template-columns:1fr 1fr}.actions .action:last-child{grid-column:1/-1}.roast-card{min-height:260px;box-shadow:7px 8px 0 #42222c}.wrap{width:min(100% - 24px,1000px)}.viral-loop{grid-template-columns:1fr;gap:8px}.loop-step{display:flex;align-items:center;gap:10px;text-align:left}.loop-step b{margin:0;min-width:44px}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
 </head>
@@ -74,6 +88,7 @@
         <div class="eyebrow">Warning: Dosti at risk ⚠️</div>
         <h1>Roast your dost.<br><em>Save the friendship.</em></h1>
         <p class="sub">Naam daal. Roast nikaal. Group mein aag laga. The internet's unofficial department of friendly beizzati. 💀</p>
+        <div class="proof" aria-label="Community highlights"><span>🔥 <b>10K+</b> dost roasted</span><span>⚡ Instant results</span><span>📲 Built for group chats</span></div>
       </section>
 
       <section class="panel" aria-label="Roast generator">
@@ -152,6 +167,11 @@
           <article class="feature"><div class="emoji">📲</div><div><h3>Share & tag</h3><p>Save the roast card and send it to your group chat in seconds.</p></div></article>
         </div>
         <div class="challenge"><strong>🔥 CHALLENGE:</strong> Roast your friend, then let them roast you back. Fair game only!</div>
+        <div class="viral-loop" aria-label="How it works">
+          <div class="loop-step"><b>01</b><span>Make the roast</span></div>
+          <div class="loop-step"><b>02</b><span>Drop it in the chat</span></div>
+          <div class="loop-step"><b>03</b><span>Challenge them back</span></div>
+        </div>
         <p class="disclaimer">Roasts are randomly selected jokes generated in your browser. Keep it friendly: no hate, threats, private information, or jokes about sensitive personal traits.</p>
       </section>
     </main>
